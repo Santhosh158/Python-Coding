@@ -1,15 +1,26 @@
-'''1.18 (Turtle: draw a star) Write a program that draws a star, as shown in Figure 1.19c.
-(Hint: The inner angle of each point in the star is 36 degrees.)
+'''18(Current time) Listing 2.7, ShowCurrentTime.py, gives a program that displays the
+current time in GMT. Revise the program so that it prompts the user to enter the
+time zone in hours away from (offset to) GMT and displays the time in the specified
+time zone. Here is a sample run:
+
+Enter the time zone offset to GMT:
+The current time is 4:50:34
 '''
 
-import turtle
-turtle.showturtle()
-turtle.penup()
-turtle.goto(0,150)
-turtle.pendown()
-turtle.goto(100,-150)
-turtle.goto(-160,30)
-turtle.goto(160,30)
-turtle.goto(-100,-150)
-turtle.goto(0,150)
-turtle.done()
+import time, math
+CT = time.time()
+CurrTime = int(CT)
+print(CurrTime)
+CurrSec = CurrTime % 60
+TotalMin = CurrTime / 60
+CurrMin = int(TotalMin % 60)
+TotalHour = TotalMin / 60
+CurrHour = int(TotalHour % 24)
+Timezone = (eval(input("Enter the time zone offset to GMT:")))
+CurrHour += Timezone
+if (CurrHour < 0):
+    CurrHour += 12
+
+ActualTime =  ("{0}:{1}:{2}".format(CurrHour,CurrMin,CurrSec))
+
+print("The current time is ",ActualTime)
